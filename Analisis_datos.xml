@@ -20,8 +20,37 @@
     </columna>
   </fichero>
 <fichero nombre="order_details.csv">
+    <NaN_totales NaN_totales="10399" />
+  <Null_totales Null_totales="10399" />
+  <columna nombre_columna="order_details_id">
+      <NaN_columna numero_NaN_columna="0" />
+    <Null_columna numero_Null_columna="0" />
+    <tipo_dato tipo_dato_columna="int64" />
+    </columna>
+  <columna nombre_columna="order_id">
+      <NaN_columna numero_NaN_columna="0" />
+    <Null_columna numero_Null_columna="0" />
+    <tipo_dato tipo_dato_columna="int64" />
+    </columna>
+  <columna nombre_columna="pizza_id">
+      <NaN_columna numero_NaN_columna="5673" />
+    <Null_columna numero_Null_columna="5673" />
+    <tipo_dato tipo_dato_columna="object" />
+    </columna>
+  <columna nombre_columna="quantity">
+      <NaN_columna numero_NaN_columna="4726" />
+    <Null_columna numero_Null_columna="4726" />
+    <tipo_dato tipo_dato_columna="object" />
+    </columna>
+  </fichero>
+<fichero nombre="order_details_limpio.csv">
     <NaN_totales NaN_totales="0" />
   <Null_totales Null_totales="0" />
+  <columna nombre_columna="Unnamed: 0">
+      <NaN_columna numero_NaN_columna="0" />
+    <Null_columna numero_Null_columna="0" />
+    <tipo_dato tipo_dato_columna="int64" />
+    </columna>
   <columna nombre_columna="order_details_id">
       <NaN_columna numero_NaN_columna="0" />
     <Null_columna numero_Null_columna="0" />
@@ -44,21 +73,21 @@
     </columna>
   </fichero>
 <fichero nombre="orders.csv">
-    <NaN_totales NaN_totales="0" />
-  <Null_totales Null_totales="0" />
+    <NaN_totales NaN_totales="4391" />
+  <Null_totales Null_totales="4391" />
   <columna nombre_columna="order_id">
       <NaN_columna numero_NaN_columna="0" />
     <Null_columna numero_Null_columna="0" />
     <tipo_dato tipo_dato_columna="int64" />
     </columna>
   <columna nombre_columna="date">
-      <NaN_columna numero_NaN_columna="0" />
-    <Null_columna numero_Null_columna="0" />
+      <NaN_columna numero_NaN_columna="2353" />
+    <Null_columna numero_Null_columna="2353" />
     <tipo_dato tipo_dato_columna="object" />
     </columna>
   <columna nombre_columna="time">
-      <NaN_columna numero_NaN_columna="0" />
-    <Null_columna numero_Null_columna="0" />
+      <NaN_columna numero_NaN_columna="2038" />
+    <Null_columna numero_Null_columna="2038" />
     <tipo_dato tipo_dato_columna="object" />
     </columna>
   </fichero>

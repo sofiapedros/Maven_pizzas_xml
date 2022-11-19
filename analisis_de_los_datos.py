@@ -2,6 +2,11 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 
 def indent(elem, level=0):
+    '''
+    Función para indentar correctamente el código en un xml
+    Va añadiendo espacios entre elementos y subelementos
+    así como añadiendo espacios en subelementos
+    '''
     i = "\n" + level*"  "
     j = "\n" + (level-1)*"  "
     if len(elem):
@@ -19,11 +24,13 @@ def indent(elem, level=0):
     return elem
 
 if __name__ == "__main__":
-    ficheros = ['data_dictionary.csv','order_details.csv','orders.csv','pizza_types.csv','pizzas.csv']
+    ficheros = ['data_dictionary.csv','order_details.csv','order_details_limpio.csv','orders.csv','pizza_types.csv','pizzas.csv',]
     root = ET.Element('Análisis_ficheros', {'Análisis':'NaN, null y tipología'})
     for fichero in ficheros:
-        
-        df = pd.read_csv(fichero,sep=",",encoding="LATIN_1")
+        if fichero != 'orders.csv' and fichero != 'order_details.csv':
+            df = pd.read_csv(fichero,sep=",",encoding="LATIN_1")
+        else:
+            df = pd.read_csv(fichero,sep=";",encoding="LATIN_1")
         fichero = ET.SubElement(root, 'fichero', {'nombre':fichero})
 
         NaN_totales = ET.SubElement(fichero,'NaN_totales',{'NaN_totales':str(df.isna().sum().sum())})
