@@ -3,10 +3,11 @@ import xml.etree.ElementTree as ET
 
 def indent(elem, level=0):
     '''
-    Función para indentar correctamente el código en un xml
+    Función recurisiva para indentar correctamente el código en un xml
     Va añadiendo espacios entre elementos y subelementos
     así como añadiendo espacios en subelementos
     '''
+
     i = "\n" + level*"  "
     j = "\n" + (level-1)*"  "
     if len(elem):
