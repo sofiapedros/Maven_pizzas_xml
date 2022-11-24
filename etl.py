@@ -1,8 +1,8 @@
-# Decirle qué tiene que comprar para la semana que viene
+# Importar librerías necesarias
 import pandas as pd
 import re
-import xml.etree.ElementTree as ET
-import datetime
+import random
+from datetime import datetime
 
 def extract():
     '''
@@ -154,9 +154,10 @@ def transform(pizza_types, pedidos, pizzas, orders):
 
 def load(final): 
     '''
-    Función que carga el dataframe final como xml
+    Función que carga el dataframe final como csv
     '''
-    final.to_xml('lista_ingredientes.xml')
+    final.to_xml('lista_ingredientes.xml')  
+
 
 def ingredientes_de_una_pizza(nombre_tipo, pizza_types):
     '''
@@ -202,6 +203,9 @@ def cambiar_formato_nombre_pizza(nombre_tipo, pizzas):
                 cantidad = 3
             else:
                 cantidad = 4
+        else:
+            nombre = pizzas['pizza_type_id'].iloc[random.randint(0,30)]
+            cantidad = 1
     return nombre, cantidad
 
 
@@ -215,8 +219,11 @@ def contar_pizzas_por_semana(order_details):
     '''
     numero_pizzas_año = 0
     for i in range(len(order_details)):
-        fila = order_details.iloc[i]
-        numero_pizzas_año += 1*int(fila['quantity'])
+        try:
+            fila = order_details.iloc[i]
+            numero_pizzas_año += 1*int(fila['quantity'])
+        except:
+            numero_pizzas_año += 1
     numero_pizzas = numero_pizzas_año//52
     return numero_pizzas
 
@@ -248,26 +255,28 @@ def contar_pizzas_en_una_semana(order_details,pizzas):
             order_pizzas.loc[0] = (pizza,tamaño*int(quantity))
 
         else:
-            # Si ya hay pizzas añadidas, busca si ya se ha añadido esa pizza
-            # En caso afirmativo, solamente suma las nuevas raciones a las que había
-            # y en caso contrario, añade una nueva fila con la nueva pizza
-            añadido = False
-            for j in range(len(order_pizzas)):
-                # Recorre el dataframe nuevo por filas
-                fila2 = order_pizzas.iloc[j]
+            try:
+                # Si ya hay pizzas añadidas, busca si ya se ha añadido esa pizza
+                # En caso afirmativo, solamente suma las nuevas raciones a las que había
+                # y en caso contrario, añade una nueva fila con la nueva pizza
+                añadido = False
+                for j in range(len(order_pizzas)):
+                    # Recorre el dataframe nuevo por filas
+                    fila2 = order_pizzas.iloc[j]
 
-                # Condición para ver si la pizza está ya en el dataFrame
-                if re.search(pizza,str(fila2)):
-                    anterior = fila2['numero']
-                    nuevo = anterior + quantity*tamaño
-                    order_pizzas.loc[j,'numero'] = nuevo
-                    añadido = True
-                    break
-            # Si añadido sigue siendo False, significa que no ha encontrado la pizza
-            # en el dataframe y la añade al final
-            if añadido == False:
-                order_pizzas.loc[len(order_pizzas)] = (pizza,tamaño*int(quantity))
-
+                    # Condición para ver si la pizza está ya en el dataFrame
+                    if re.search(pizza,str(fila2)):
+                        anterior = fila2['numero']
+                        nuevo = anterior + quantity*tamaño
+                        order_pizzas.loc[j,'numero'] = nuevo
+                        añadido = True
+                        break
+                # Si añadido sigue siendo False, significa que no ha encontrado la pizza
+                # en el dataframe y la añade al final
+                if añadido == False:
+                    order_pizzas.loc[len(order_pizzas)] = (pizza,tamaño*int(quantity))
+            except:
+                order_pizzas.loc[len(order_pizzas)] = (pizza,tamaño*random.randint(0,3))
     return order_pizzas
 
 
@@ -318,6 +327,6 @@ if __name__=="__main__":
     '''
     El main llama a las tres funciones necesarias para hacer la ETL
     '''
-    pizza_types, pedidos, pizzas = extract()
-    final = transform(pizza_types, pedidos, pizzas)
+    pizza_types, pedidos, pizzas, orders = extract()
+    final = transform(pizza_types, pedidos, pizzas, orders)
     load(final)
