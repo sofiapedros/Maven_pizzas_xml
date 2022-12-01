@@ -1,8 +1,8 @@
 # Maven_pizzas_xml
 
 El repositorio contiene los siguientes ficheros:
-- etl.py
-- analisis_de_los_datos.py
+- etl.py (programa a ejecutar) 
+- analisis_de_los_datos.py (programa a ejecutar)
 - Analisis_datos.xml
 - requirements.txt
 - data_dictionary.csv
@@ -13,6 +13,7 @@ El repositorio contiene los siguientes ficheros:
 - Datos limpios.csv
 - Fechas_limpias.csv
 - lista_ingredientes.xml
+
 
 ### etl.py
 "etl.py": Programa que, dado un conjunto de datos de una pizzería como ficheros csv, calcula los ingredientes que debe comprar esa pizzería en una semana, suponiendo que el número de ventas de la pizzería en una semana sea regular (utiliza la media de todos los pedidos). Además, supone que la cantidad de ingredientes de una pizza es 1 ración para la pizza pequeña, 2 para la mediana, 3 para la grande y 4 para tamaños superiores. Guarda la lista de los ingredientes a comprar con el número de raciones necesarias en un xml llamado "lista_ingredientes.xml". Realiza esta funcionalidad como una etl: primero extrae los datos, después los tranforma , y por último obtiene un resultado en forma de un xml (lista_ingredientes.xml). 
