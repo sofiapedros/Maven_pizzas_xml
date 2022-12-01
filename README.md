@@ -28,8 +28,8 @@ Fichero de texto de salida al ejecutar analisis_de_los_datos.py
 ### requirements.txt
 Librerías utilizadas
 
-### final.csv
-Csv obtenido como salida al realizar la etl
+### lista_ingredientes.xml
+Xml obtenido como salida al realizar la etl
 
 ### Fechas_limpias.csv
 Resultado de limpiar el fichero 'orders.csv'
